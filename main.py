@@ -33,9 +33,7 @@ for i in range(10):
 for i in range(11, 16):
     print(i)
 
-for i in range(17, 25, 3):
-    print(i)
-
 for i in range(30, 26, -1):
-    print(i)
+    print(i+1)
 
+print('Hello Git!')
