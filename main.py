@@ -39,3 +39,5 @@ for i in range(30, 26, -1):
 print('Hello Git!')
 
 print('Git Branch Test')
+x = int(input())
+print(x ** 2)
