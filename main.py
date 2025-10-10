@@ -37,3 +37,6 @@ for i in range(30, 26, -1):
     print(i+1)
 
 print('Hello Git!')
+
+x = float(input())
+print(x ** 3)
