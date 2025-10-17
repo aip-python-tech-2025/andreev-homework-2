@@ -36,7 +36,7 @@ for i in range(11, 16):
 for i in range(30, 26, -1):
     print(i+1)
 
-print('Hello Git!')
+print('Hello Git & GitHub!')
 
 print('Git & PyCharm Branch Test')
 x = float(input())
