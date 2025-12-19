@@ -1,3 +1,7 @@
+class NotEnoughMoneyError(ValueError):
+    pass
+
+
 class Transaction:
     def __init__(self, amount, sender=None, recipient=None):
         self.__sender = sender
@@ -22,6 +26,8 @@ class Client:
             self._balance -= amount
             self._transactions.append(Transaction(amount, self, recipient))
             recipient._transactions.append(Transaction(amount, recipient, self))
+        else:
+            raise NotEnoughMoneyError(f'{self._name} does not have enough money')
 
     def deposit(self, amount):
         self._balance += amount
@@ -31,11 +37,15 @@ class Client:
         if self._balance >= amount:
             self._balance -= amount
             self._transactions.append(Transaction(amount, self, None))
+        else:
+            raise NotEnoughMoneyError(f'{self._name} does not have enough money')
 
     def pay(self, amount):
         if self._balance >= amount:
             self._balance -= amount
             self._transactions.append(Transaction(amount, self, None))
+        else:
+            raise NotEnoughMoneyError(f'{self._name} does not have enough money')
 
     # Функция-геттер
     def get_name(self):
@@ -68,14 +78,16 @@ class VipClient(Client):
             self._balance -= amount
             self.__bonuses += int(amount * 0.15)
             self._transactions.append(Transaction(amount, self, None))
+        else:
+            raise NotEnoughMoneyError(f'{self._name} does not have enough money')
 
     def __str__(self):
         return f'{self._name} with balance = {self._balance} and bonuses = {self.__bonuses}'
 
 
-alice = Client(name='Alice', initial_balance=1000)
-bob = Client(name='Bob', initial_balance=2000)
-charlie = VipClient(name='Charlie', initial_balance=3000)
+alice = Client(name='Alice', initial_balance=100)
+bob = Client(name='Bob', initial_balance=200)
+charlie = VipClient(name='Charlie', initial_balance=300)
 
 for client in alice, bob, charlie:
     client.pay(100)
@@ -87,7 +99,13 @@ for client in alice, bob, charlie:
 
 bob.transfer(alice, 100)
 charlie.transfer(alice, 100)
-charlie.transfer(bob, 150)
+
+try:
+    charlie.transfer(bob, 150)
+except ValueError:
+    print('Charlie does not have enough money, depositing...')
+    charlie.deposit(150)
+    charlie.transfer(bob, 150)
 
 # charlie._Client__balance = 10000
 
