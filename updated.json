@@ -1,0 +1,21 @@
+{
+  "data": {
+    "category": "monsters",
+    "common_locations": [
+      "Hyrule Field",
+      "Hebra Mountains"
+    ],
+    "description": "Очень подробный и точный перевод",
+    "dlc": false,
+    "drops": [
+      "lynel horn",
+      "lynel hoof",
+      "lynel guts"
+    ],
+    "id": 123,
+    "image": "https://botw-compendium.herokuapp.com/api/v3/compendium/entry/white-maned_lynel/image",
+    "name": "white-maned lynel"
+  },
+  "message": "",
+  "status": 200
+}
